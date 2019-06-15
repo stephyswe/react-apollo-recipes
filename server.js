@@ -36,7 +36,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// Create >GraphiQL application
+// Create GraphiQL application
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 // Connect schemas with GraphQL
@@ -54,6 +54,4 @@ app.use(
 
 const PORT = process.env.PORT || 4444;
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port: ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
