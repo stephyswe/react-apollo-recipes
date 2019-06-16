@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import Error from '../Error';
 import { SIGNUP_USER } from '../queries';
@@ -10,7 +11,7 @@ const initialState = {
   passwordConfirmation: '',
 };
 
-class Signin extends Component {
+class Signup extends Component {
   state = { ...initialState };
 
   clearState = () => {
@@ -27,9 +28,12 @@ class Signin extends Component {
   handleSubmit = (event, signUpUser) => {
     event.preventDefault();
     signUpUser()
-      .then(data => {
+      .then(async ({ data }) => {
         console.log(data);
+        localStorage.setItem('token', data.signUpUser.token);
+        await this.props.refetch();
         this.clearState();
+        this.props.history.push('/');
       })
       .catch(err => {
         console.log(err);
@@ -39,9 +43,14 @@ class Signin extends Component {
   validateForm = () => {
     const { username, email, password, passwordConfirmation } = this.state;
 
-    const isInvalid = !username || !email || !password ||  !passwordConfirmation || password !== passwordConfirmation;
+    const isInvalid =
+      !username ||
+      !email ||
+      !password ||
+      !passwordConfirmation ||
+      password !== passwordConfirmation;
     return isInvalid;
-  }
+  };
 
   render() {
     const { username, email, password, passwordConfirmation } = this.state;
@@ -105,4 +114,4 @@ class Signin extends Component {
   }
 }
 
-export default Signin;
+export default withRouter(Signup);
