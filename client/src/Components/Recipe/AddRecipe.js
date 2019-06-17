@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import { ADD_RECIPE, GET_ALL_RECIPES } from '../queries';
 import Error from '../Error';
+import withAuth from '../WithAuth';
 
 const initialState = {
   name: '',
@@ -47,15 +48,15 @@ class AddRecipe extends React.Component {
     return isInvalid;
   };
 
-  updateCache = (cache, {data: {addRecipe}}) => {
+  updateCache = (cache, { data: { addRecipe } }) => {
     const { getAllRecipes } = cache.readQuery({ query: GET_ALL_RECIPES });
 
     cache.writeQuery({
       query: GET_ALL_RECIPES,
       data: {
-        getAllRecipes: [addRecipe, ...getAllRecipes]
-      }
-    })
+        getAllRecipes: [addRecipe, ...getAllRecipes],
+      },
+    });
   };
 
   render() {
@@ -121,4 +122,4 @@ class AddRecipe extends React.Component {
   }
 }
 
-export default withRouter(AddRecipe);
+export default withAuth(session => session && session.getCurrentUser)(withRouter(AddRecipe));
