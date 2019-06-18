@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const path = require('path');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 
@@ -25,7 +26,7 @@ mongoose
   .connect(process.env.MONGO_URI, {
     useCreateIndex: true,
     useNewUrlParser: true,
-    useFindAndModify: false
+    useFindAndModify: false,
   })
   .then(() => console.log('DB connected'))
   .catch(error => console.error(error));
@@ -53,8 +54,8 @@ app.use(async (req, res, next) => {
   next();
 });
 
-// Create GraphiQL application
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+// Create GraphiQL application - Used in DEV mode
+//app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 // Connect schemas with GraphQL
 app.use(
@@ -69,6 +70,14 @@ app.use(
     },
   }))
 );
+
+// PROD mode
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 const PORT = process.env.PORT || 4444;
 

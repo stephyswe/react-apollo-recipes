@@ -22,7 +22,7 @@ import Signup from './Components/Auth/Signup';
 import Search from './Components/Recipe/Search';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4444/graphql',
+  uri: 'https://react-recipes-beta.herokuapp.com/graphql',
   fetchOptions: {
     credentials: 'include',
   },
