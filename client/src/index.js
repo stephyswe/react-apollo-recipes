@@ -10,7 +10,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import './index.css';
 import App from './Components/App';
-import withSession from './Components/WithSession';
+import WithSession from './Components/WithSession';
 import Navbar from './Components/Navbar';
 
 import AddRecipe from './Components/Recipe/AddRecipe';
@@ -66,7 +66,7 @@ const Root = ({ refetch, session }) => (
   </Router>
 );
 
-const RootWithSession = withSession(Root);
+const RootWithSession = WithSession(Root);
 
 ReactDOM.render(
   <ApolloProvider client={client}>
