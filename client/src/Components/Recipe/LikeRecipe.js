@@ -1,7 +1,7 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
 import { LIKE_RECIPE, UNLIKE_RECIPE, GET_RECIPE } from '../queries';
-import withSession from '../withSession';
+import WithSession from '../WithSession';
 
 class LikeRecipe extends React.Component {
   state = {
@@ -104,4 +104,4 @@ class LikeRecipe extends React.Component {
   }
 }
 
-export default withSession(LikeRecipe);
+export default WithSession(LikeRecipe);

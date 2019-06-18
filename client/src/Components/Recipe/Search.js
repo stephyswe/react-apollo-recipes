@@ -1,6 +1,4 @@
 import React from 'react';
-
-
 import { ApolloConsumer } from 'react-apollo';
 import { SEARCH_RECIPES } from '../queries';
 import SearchItem from '../Recipe/SearchItem';

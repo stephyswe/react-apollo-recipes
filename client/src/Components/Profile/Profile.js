@@ -1,7 +1,7 @@
 import React from 'react';
 import UserInfo from './UserInfo';
 import UserRecipes from './UserRecipes';
-import withAuth from '../withAuth'
+import WithAuth from '../WithAuth'
 
 const Profile = ({ session }) => (
   <div className="App">
@@ -10,4 +10,4 @@ const Profile = ({ session }) => (
   </div>
 );
 
-export default withAuth(session => session && session.getCurrentUser)(Profile);
+export default WithAuth(session => session && session.getCurrentUser)(Profile);

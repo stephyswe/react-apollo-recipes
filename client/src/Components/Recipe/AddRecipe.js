@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import { ADD_RECIPE, GET_ALL_RECIPES, GET_USER_RECIPES } from '../queries';
 import Error from '../Error';
-import withAuth from '../withAuth';
+import WithAuth from '../WithAuth';
 
 const initialState = {
   name: '',
@@ -123,6 +123,6 @@ class AddRecipe extends React.Component {
   }
 }
 
-export default withAuth(session => session && session.getCurrentUser)(
+export default WithAuth(session => session && session.getCurrentUser)(
   withRouter(AddRecipe)
 );
