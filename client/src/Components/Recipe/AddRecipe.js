@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import { ADD_RECIPE, GET_ALL_RECIPES } from '../queries';
 import Error from '../Error';
-import withAuth from '../WithAuth';
+import withAuth from '../withAuth';
 
 const initialState = {
   name: '',
