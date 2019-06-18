@@ -22,7 +22,6 @@ class AddRecipe extends React.Component {
   };
 
   componentDidMount() {
-    console.log(this.props.session.getCurrentUser.username);
     this.setState({
       username: this.props.session.getCurrentUser.username,
     });
@@ -36,7 +35,6 @@ class AddRecipe extends React.Component {
   handleSubmit = (event, addRecipe) => {
     event.preventDefault();
     addRecipe().then(({ data }) => {
-      console.log(data);
       this.clearState();
       this.props.history.push('/');
     });

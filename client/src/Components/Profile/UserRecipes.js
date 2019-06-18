@@ -14,7 +14,6 @@ const handleDelete = deleteUserRecipe => {
   );
   if (confirmDelete) {
     deleteUserRecipe().then(({ data }) => {
-      console.log(data);
     });
   }
 };
@@ -24,7 +23,6 @@ const UserRecipes = ({ username }) => (
     {({ data, loading, error }) => {
       if (loading) return <div>Loading</div>;
       if (error) return <div>Error</div>;
-      console.log(data);
       return (
         <ul>
           <h3>Your Recipes</h3>
